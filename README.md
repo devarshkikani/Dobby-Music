@@ -10,8 +10,6 @@
  </p>
 </p>
 
-
-
   <h3 align="center">Features</h3>
   <p align="center">
     Online Song Search :mag:<br>
@@ -25,7 +23,7 @@
     No Subscriptions :dollar:<br> 
     14 Supported Languages :us:<br>
     Material UI & Accent Colors & Dynamic Colors (Android 12+) :art: <br>
- 
+
 
 ---
 
@@ -40,10 +38,10 @@
 ---
 
   <h3 align="center">Download</h3>
-     <p align="center" style="align-items:center"><a href="https://github.com/gokadzev/Musify/releases" rel="GitHub Releases"><img width="100" height="100" src="https://telegra.ph/file/21bb2cc648561f192cea4.png"></a><a href="https://apt.izzysoft.de/fdroid/index/apk/com.gokadzev.musify" rel="IzzySoft"><img width="250" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"></a></p>
-
+     <p align="center" style="align-items:center"><a href="https://github.com/gokadzev/Musify/releases" rel="GitHub Releases"><img width="100" height="100" src="https://telegra.ph/file/21bb2cc648561f192cea4.png"></a><a href="https://apt.izzysoft.de/fdroid/index/apk/com.music.dobby" rel="IzzySoft"><img width="250" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"></a></p>
 
 ---
+
   <h3 align="center">Credits</h3>
    <p align="center">
    <a href="https://github.com/Harsh-23/Musify">https://github.com/Harsh-23/Musify</a>: <br>

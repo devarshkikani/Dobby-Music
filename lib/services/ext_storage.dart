@@ -30,7 +30,7 @@ class ExtStorageProvider {
 
           // getting main path
           final newPath = directory!.path
-              .replaceFirst('Android/data/com.gokadzev.musify/files', dirName);
+              .replaceFirst('Android/data/com.music.dobby/files', dirName);
 
           directory = Directory(newPath);
 
