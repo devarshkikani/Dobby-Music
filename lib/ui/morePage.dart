@@ -59,14 +59,18 @@ class SettingsCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // CATEGORY: PAGES
-        Text(
-          AppLocalizations.of(context)!.pages,
-          style: TextStyle(
-            color: accent.primary,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Text(
+            AppLocalizations.of(context)!.pages,
+            style: TextStyle(
+              color: accent.primary,
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         SettingBar(
@@ -103,12 +107,15 @@ class SettingsCards extends StatelessWidget {
         ),
 
         // CATEGORY: SETTINGS
-        Text(
-          AppLocalizations.of(context)!.settings,
-          style: TextStyle(
-            color: accent.primary,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Text(
+            AppLocalizations.of(context)!.settings,
+            style: TextStyle(
+              color: accent.primary,
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         SettingBar(
@@ -509,12 +516,15 @@ class SettingsCards extends StatelessWidget {
         ),
 
         // CATEGORY: TOOLS
-        Text(
-          AppLocalizations.of(context)!.tools,
-          style: TextStyle(
-            color: accent.primary,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Text(
+            AppLocalizations.of(context)!.tools,
+            style: TextStyle(
+              color: accent.primary,
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         SettingBar(
@@ -578,32 +588,35 @@ class SettingsCards extends StatelessWidget {
           },
         ),
         // CATEGORY: OTHERS
-        Text(
-          AppLocalizations.of(context)!.others,
-          style: TextStyle(
-            color: accent.primary,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SettingBar(
-          AppLocalizations.of(context)!.supportDonate,
-          MdiIcons.heart,
-          () => {
-            launchURL(
-              Uri.parse('https://www.buymeacoffee.com/gokadzev18'),
-            ),
-          },
-        ),
-        SettingBar(
-          AppLocalizations.of(context)!.about,
-          MdiIcons.information,
-          () => {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const AboutPage()),
-            ),
-          },
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        //   child: Text(
+        //     AppLocalizations.of(context)!.others,
+        //     style: TextStyle(
+        //       color: accent.primary,
+        //       fontSize: 15,
+        //       fontWeight: FontWeight.w400,
+        //     ),
+        //   ),
+        // ),
+        // SettingBar(
+        //   AppLocalizations.of(context)!.supportDonate,
+        //   MdiIcons.heart,
+        //   () => {
+        //     launchURL(
+        //       Uri.parse('https://www.buymeacoffee.com/gokadzev18'),
+        //     ),
+        //   },
+        // ),
+        // SettingBar(
+        //   AppLocalizations.of(context)!.about,
+        //   MdiIcons.information,
+        //   () => {
+        //     Navigator.of(context).push(
+        //       MaterialPageRoute(builder: (context) => const AboutPage()),
+        //     ),
+        //   },
+        // ),
         const SizedBox(
           height: 20,
         )

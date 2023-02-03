@@ -38,7 +38,7 @@ void clearCache() async {
 
 Future backupData() async {
   final boxNames = ['user', 'settings'];
-  final dlPath = await ExtStorageProvider.getExtStorage(dirName: 'Musify/Data');
+  final dlPath = await ExtStorageProvider.getExtStorage(dirName: 'Dobby/Data');
 
   for (var i = 0; i < boxNames.length; i++) {
     await Hive.openBox(boxNames[i]);
@@ -59,8 +59,7 @@ Future backupData() async {
 
 Future restoreData() async {
   final boxNames = ['user', 'settings'];
-  final uplPath =
-      await ExtStorageProvider.getExtStorage(dirName: 'Musify/Data');
+  final uplPath = await ExtStorageProvider.getExtStorage(dirName: 'Dobby/Data');
 
   for (var i = 0; i < boxNames.length; i++) {
     await Hive.openBox(boxNames[i]);

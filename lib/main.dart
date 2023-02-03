@@ -200,7 +200,7 @@ Future<void> initialisation() async {
         androidNotificationChannelId: 'com.gokadzev.musify',
         androidNotificationChannelName: 'Musify',
         androidNotificationOngoing: true,
-        androidNotificationIcon: 'mipmap/launcher_icon',
+        androidNotificationIcon: 'mipmap/ic_launcher',
         androidShowNotificationBadge: true,
       ),
     ),

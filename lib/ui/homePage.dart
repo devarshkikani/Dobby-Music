@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Musify.',
+          'Dobby.',
           style: TextStyle(
             color: accent.primary,
             fontSize: 35,
