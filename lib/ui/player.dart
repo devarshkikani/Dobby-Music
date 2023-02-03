@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:musify/API/musify.dart';
+import 'package:musify/customWidgets/banner_widget.dart';
 import 'package:musify/customWidgets/spinner.dart';
 import 'package:musify/helper/mediaitem.dart';
 import 'package:musify/services/audio_manager.dart';
@@ -180,6 +181,7 @@ class AudioAppState extends State<AudioApp> {
           },
         ),
       ),
+      bottomNavigationBar: const ShowBannerAds(),
     );
   }
 

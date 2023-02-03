@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:musify/API/musify.dart';
+import 'package:musify/customWidgets/ads_id.dart';
+import 'package:musify/customWidgets/banner_widget.dart';
 import 'package:musify/customWidgets/delayed_display.dart';
+import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/customWidgets/song_bar.dart';
 import 'package:musify/customWidgets/spinner.dart';
 import 'package:musify/style/appTheme.dart';
@@ -95,7 +98,8 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             ),
-                          )
+                          ),
+                          const ShowBannerAds(),
                         ],
                       )
                     : const Center(
@@ -155,11 +159,16 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(
                         horizontal: 7,
                       ),
-                      child: ListView.builder(
+                      child: ListView.separated(
                         shrinkWrap: true,
                         addAutomaticKeepAlives: false,
                         addRepaintBoundaries: false,
                         physics: const BouncingScrollPhysics(),
+                        separatorBuilder: (context, index) {
+                          return ((index + 1) % 4 == 0)
+                              ? const ShowBannerAds()
+                              : const SizedBox();
+                        },
                         itemCount: (data as dynamic).data.length as int,
                         itemBuilder: (context, index) {
                           return SongBar((data as dynamic).data[index]);
@@ -194,13 +203,21 @@ class CubeContainer extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           getPlaylistInfoForWidget(id).then(
-            (value) => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PlaylistPage(playlist: value),
-                ),
-              )
+            (value) {
+              final showAds = ShowAds();
+              if (showAds.placements[AdsIds.interstitialVideoAdPlacementId]!) {
+                showAds.showAd(
+                  AdsIds.interstitialVideoAdPlacementId,
+                  () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlaylistPage(playlist: value),
+                      ),
+                    );
+                  },
+                );
+              }
             },
           );
         },

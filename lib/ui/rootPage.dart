@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:musify/customWidgets/ads_id.dart';
 import 'package:musify/customWidgets/custom_animated_bottom_bar.dart';
+import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/helper/flutter_toast.dart';
 import 'package:musify/helper/version.dart';
 import 'package:musify/services/audio_manager.dart';
@@ -160,12 +162,21 @@ class AppState extends State<Musify> {
                 padding: const EdgeInsets.only(top: 5, bottom: 2),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AudioApp(),
-                      ),
-                    );
+                    final showAds = ShowAds();
+                    if (showAds
+                        .placements[AdsIds.interstitialVideoAdPlacementId]!) {
+                      showAds.showAd(
+                        AdsIds.interstitialVideoAdPlacementId,
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AudioApp(),
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                   child: Row(
                     children: <Widget>[
