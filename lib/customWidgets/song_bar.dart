@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:musify/API/musify.dart';
+import 'package:musify/customWidgets/ads_id.dart';
+import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/services/audio_manager.dart';
 import 'package:musify/services/download_manager.dart';
 import 'package:musify/style/appTheme.dart';
@@ -20,10 +22,18 @@ class SongBar extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: () {
-          playSong(song);
-          if (activePlaylist.isNotEmpty) {
-            activePlaylist = [];
-            id = 0;
+          final showAds = ShowAds();
+          if (showAds.placements[AdsIds.interstitialVideoAdPlacementId]!) {
+            showAds.showAd(
+              AdsIds.interstitialVideoAdPlacementId,
+              () {
+                playSong(song);
+                if (activePlaylist.isNotEmpty) {
+                  activePlaylist = [];
+                  id = 0;
+                }
+              },
+            );
           }
         },
         splashColor: accent.primary.withOpacity(0.4),

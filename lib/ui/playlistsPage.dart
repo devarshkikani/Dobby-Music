@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:musify/API/musify.dart';
+import 'package:musify/customWidgets/ads_id.dart';
 import 'package:musify/customWidgets/banner_widget.dart';
 import 'package:musify/customWidgets/delayed_display.dart';
+import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/customWidgets/spinner.dart';
 import 'package:musify/style/appTheme.dart';
 import 'package:musify/ui/playlistPage.dart';
@@ -210,16 +212,24 @@ class GetPlaylist extends StatelessWidget {
       fadingDuration: const Duration(milliseconds: 400),
       child: GestureDetector(
         onTap: () {
-          getPlaylistInfoForWidget(id).then(
-            (value) => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PlaylistPage(playlist: value),
-                ),
-              )
-            },
-          );
+          final showAds = ShowAds();
+          if (showAds.placements[AdsIds.interstitialVideoAdPlacementId]!) {
+            showAds.showAd(
+              AdsIds.interstitialVideoAdPlacementId,
+              () {
+                getPlaylistInfoForWidget(id).then(
+                  (value) => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlaylistPage(playlist: value),
+                      ),
+                    )
+                  },
+                );
+              },
+            );
+          }
         },
         child: Padding(
           padding: const EdgeInsets.only(right: 15),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:musify/API/musify.dart';
+import 'package:musify/customWidgets/ads_id.dart';
 import 'package:musify/customWidgets/banner_widget.dart';
+import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/customWidgets/spinner.dart';
 import 'package:musify/helper/flutter_toast.dart';
 import 'package:musify/style/appColors.dart';
@@ -31,46 +33,54 @@ class _UserPlaylistsPageState extends State<UserPlaylistsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              var id = '';
-              return AlertDialog(
-                backgroundColor: Theme.of(context).splashColor,
-                content: Stack(
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText:
-                            AppLocalizations.of(context)!.youtubePlaylistID,
-                        hintStyle:
-                            TextStyle(color: Theme.of(context).hintColor),
+          final showAds = ShowAds();
+          if (showAds.placements[AdsIds.interstitialVideoAdPlacementId]!) {
+            showAds.showAd(
+              AdsIds.interstitialVideoAdPlacementId,
+              () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    var id = '';
+                    return AlertDialog(
+                      backgroundColor: Theme.of(context).splashColor,
+                      content: Stack(
+                        children: <Widget>[
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: AppLocalizations.of(context)!
+                                  .youtubePlaylistID,
+                              hintStyle:
+                                  TextStyle(color: Theme.of(context).hintColor),
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                id = value;
+                              });
+                            },
+                          )
+                        ],
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          id = value;
-                        });
-                      },
-                    )
-                  ],
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text(
-                      AppLocalizations.of(context)!.add.toUpperCase(),
-                      style: TextStyle(color: accent.primary),
-                    ),
-                    onPressed: () {
-                      showToast(addUserPlaylist(id, context));
-                      setState(() {
-                        Navigator.pop(context);
-                      });
-                    },
-                  ),
-                ],
-              );
-            },
-          );
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text(
+                            AppLocalizations.of(context)!.add.toUpperCase(),
+                            style: TextStyle(color: accent.primary),
+                          ),
+                          onPressed: () {
+                            showToast(addUserPlaylist(id, context));
+                            setState(() {
+                              Navigator.pop(context);
+                            });
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            );
+          }
         },
         backgroundColor: accent.primary,
         child: Icon(

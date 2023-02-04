@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:musify/API/musify.dart';
+import 'package:musify/customWidgets/ads_id.dart';
+import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/customWidgets/song_bar.dart';
 import 'package:musify/customWidgets/spinner.dart';
 import 'package:musify/services/data_manager.dart';
@@ -149,11 +151,24 @@ class _SearchPageState extends State<SearchPage> {
                           style: TextStyle(color: accent.primary),
                         ),
                         onTap: () async {
-                          _fetchingSongs.value = true;
-                          _searchQuery = searchHistory[index];
-                          await fetchSongsList(searchHistory[index]);
-                          _fetchingSongs.value = false;
-                          setState(() {});
+                          final showAds = ShowAds();
+                          if (showAds.placements[
+                              AdsIds.interstitialVideoAdPlacementId]!) {
+                            showAds.showAd(
+                              AdsIds.interstitialVideoAdPlacementId,
+                              () {
+                                getPlaylistInfoForWidget(id).then(
+                                  (value) async {
+                                    _fetchingSongs.value = true;
+                                    _searchQuery = searchHistory[index];
+                                    await fetchSongsList(searchHistory[index]);
+                                    _fetchingSongs.value = false;
+                                    setState(() {});
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),
