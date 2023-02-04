@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:musify/API/musify.dart';
 import 'package:musify/customWidgets/ads_id.dart';
-import 'package:musify/customWidgets/banner_widget.dart';
 import 'package:musify/customWidgets/delayed_display.dart';
 import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/customWidgets/spinner.dart';
@@ -104,7 +103,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                 ),
               ),
             ),
-            const ShowBannerAds(),
+            // const ShowBannerAds(),
             if (_searchQuery.isEmpty)
               FutureBuilder(
                 future: getPlaylists(),
@@ -183,7 +182,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
                       : const Spinner();
                 },
               ),
-            const ShowBannerAds(),
+            // const ShowBannerAds(),
           ],
         ),
       ),

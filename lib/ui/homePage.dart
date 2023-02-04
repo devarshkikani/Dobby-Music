@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:musify/API/musify.dart';
 import 'package:musify/customWidgets/ads_id.dart';
-import 'package:musify/customWidgets/banner_widget.dart';
 import 'package:musify/customWidgets/delayed_display.dart';
 import 'package:musify/customWidgets/show_ads.dart';
 import 'package:musify/customWidgets/song_bar.dart';
@@ -99,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                           ),
-                          const ShowBannerAds(),
+                          // const ShowBannerAds(),
                         ],
                       )
                     : const Center(
@@ -165,9 +164,11 @@ class _HomePageState extends State<HomePage> {
                         addRepaintBoundaries: false,
                         physics: const BouncingScrollPhysics(),
                         separatorBuilder: (context, index) {
-                          return ((index + 1) % 4 == 0)
-                              ? const ShowBannerAds()
-                              : const SizedBox();
+                          return
+                              // ((index + 1) % 4 == 0)
+                              //     ? const ShowBannerAds()
+                              //     :
+                              const SizedBox();
                         },
                         itemCount: (data as dynamic).data.length as int,
                         itemBuilder: (context, index) {
