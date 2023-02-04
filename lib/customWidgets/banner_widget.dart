@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:unity_ads_plugin/unity_ads_plugin.dart';
 
@@ -16,8 +18,11 @@ class ShowBannerAds extends StatelessWidget {
                 print('Banner loaded: $placementId'),
             onClick: (String placementId) =>
                 print('Banner clicked: $placementId'),
-            onFailed: (String placementId, UnityAdsBannerError error,
-                    String message) =>
+            onFailed: (
+              String placementId,
+              UnityAdsBannerError error,
+              String message,
+            ) =>
                 print(
               'Banner Ad $placementId failed: $error $message',
             ),

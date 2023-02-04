@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_print
+
+import 'package:flutter/foundation.dart';
 import 'package:musify/customWidgets/ads_id.dart';
 import 'package:unity_ads_plugin/unity_ads_plugin.dart';
 
@@ -15,7 +18,7 @@ class ShowAds {
 
   void loadAds() {
     // ignore: prefer_foreach
-    for (final String element in placements.keys) {
+    for (final element in placements.keys) {
       _loadAd(element);
     }
   }
@@ -24,7 +27,9 @@ class ShowAds {
     UnityAds.load(
       placementId: placementId,
       onComplete: (String placementId) {
-        print('Load Complete $placementId');
+        if (kDebugMode) {
+          print('Load Complete $placementId');
+        }
         placements[placementId] = true;
       },
       onFailed: (String placementId, UnityAdsLoadError error, String message) =>
@@ -37,19 +42,16 @@ class ShowAds {
     UnityAds.showVideoAd(
       placementId: placementId,
       onComplete: (String placementId) {
-        print('Video Ad $placementId completed');
         _loadAd(placementId);
         nextStep();
       },
       onFailed: (String placementId, UnityAdsShowError error, String message) {
-        print('Video Ad $placementId failed: $error $message');
         _loadAd(placementId);
         nextStep();
       },
       onStart: (String placementId) => print('Video Ad $placementId started'),
       onClick: (String placementId) => print('Video Ad $placementId click'),
       onSkipped: (String placementId) {
-        print('Video Ad $placementId skipped');
         _loadAd(placementId);
         nextStep();
       },

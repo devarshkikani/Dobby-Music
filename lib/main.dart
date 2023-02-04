@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:audio_service/audio_service.dart';
@@ -195,7 +197,9 @@ void main() async {
     gameId: '5129871',
     testMode: true,
     onComplete: () {
-      print('Initialization Complete');
+      if (kDebugMode) {
+        print('Initialization Complete');
+      }
     },
     onFailed: (UnityAdsInitializationError error, String message) =>
         print('Initialization Failed: $error $message'),
